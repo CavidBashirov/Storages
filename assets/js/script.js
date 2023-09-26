@@ -107,6 +107,10 @@ if (localStorage.getItem("basket") != null) {
     document.querySelector(".basket .count").classList.add("d-none")
 }
 
+if(basket.length == 0){
+    document.querySelector(".basket .count").classList.add("d-none");
+}
+
 function basketCount() {
     let basketCount = 0;
     for (const item of basket) {
@@ -126,6 +130,8 @@ addBtns.forEach(btn => {
         let productDescription = this.parentNode.firstElementChild.nextElementSibling.innerText;
         let productImage = this.parentNode.previousElementSibling.getAttribute("src");
         let productId = parseInt(this.parentNode.getAttribute("data-id"));
+        let productPrice = parseFloat(this.nextElementSibling.innerText.split(" ")[0]);
+      
 
         let existProduct = basket.find(m => m.id == productId);
 
@@ -138,6 +144,7 @@ addBtns.forEach(btn => {
                 name: productName,
                 description: productDescription,
                 image: productImage,
+                price:productPrice,
                 count: 1
             })
         }
