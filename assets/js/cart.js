@@ -6,16 +6,19 @@ let basket = [];
 if (localStorage.getItem("basket") != null) {
     basket = JSON.parse(localStorage.getItem("basket"))
     document.querySelector("#cart .alert-warning").classList.add("d-none");
+    document.querySelector(".total-price").classList.remove("d-none");
 } else {
     document.querySelector(".basket .count").classList.add("d-none");
     document.querySelector("#cart .table").classList.add("d-none");
     document.querySelector("#cart .alert-warning").classList.remove("d-none");
+    document.querySelector(".total-price").classList.add("d-none");
 }
 
 if(basket.length == 0){
     document.querySelector("#cart .table").classList.add("d-none");
     document.querySelector("#cart .alert-warning").classList.remove("d-none");
     document.querySelector(".basket .count").classList.add("d-none");
+    document.querySelector(".total-price").classList.add("d-none");
 }
 
 
@@ -69,9 +72,24 @@ deleteBtns.forEach(btn => {
             document.querySelector("#cart .table").classList.add("d-none");
             document.querySelector("#cart .alert-warning").classList.remove("d-none");
             document.querySelector(".basket .count").classList.add("d-none");
+            document.querySelector(".total-price").classList.add("d-none");
         }
+
+        getTotalPrice(basket)
     })
 });
+}
+
+getTotalPrice(basket);
+
+
+function getTotalPrice(products){
+    let total = 0;
+    for (const product of products) {
+        total+=product.price*product.count
+    }
+    
+    document.querySelector(".total-price span").innerText = total + " ₼";
 }
 
 
