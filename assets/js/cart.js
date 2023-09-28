@@ -62,20 +62,42 @@ function deleteBasketItem(){
 let deleteBtns = document.querySelectorAll(".table button");
 deleteBtns.forEach(btn => {
     btn.addEventListener("click",function(){
-        let productId = parseInt(this.getAttribute("data-id"));
-        let existProduct = basket.find(m=>m.id == productId);
-        basket = basket.filter(m=>m.id != existProduct.id);
-        localStorage.setItem("basket",JSON.stringify(basket));
-        document.querySelector(".basket .count span").innerText = basketCount();
-        this.parentNode.parentNode.remove();
-        if(basket.length == 0){
-            document.querySelector("#cart .table").classList.add("d-none");
-            document.querySelector("#cart .alert-warning").classList.remove("d-none");
-            document.querySelector(".basket .count").classList.add("d-none");
-            document.querySelector(".total-price").classList.add("d-none");
-        }
+       
 
-        getTotalPrice(basket)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+                let productId = parseInt(this.getAttribute("data-id"));
+                let existProduct = basket.find(m=>m.id == productId);
+                basket = basket.filter(m=>m.id != existProduct.id);
+                localStorage.setItem("basket",JSON.stringify(basket));
+                document.querySelector(".basket .count span").innerText = basketCount();
+                this.parentNode.parentNode.remove();
+                if(basket.length == 0){
+                    document.querySelector("#cart .table").classList.add("d-none");
+                    document.querySelector("#cart .alert-warning").classList.remove("d-none");
+                    document.querySelector(".basket .count").classList.add("d-none");
+                    document.querySelector(".total-price").classList.add("d-none");
+                }
+        
+                getTotalPrice(basket)
+
+
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+            }
+          })
     })
 });
 }

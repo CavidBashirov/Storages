@@ -14,7 +14,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./assets/css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" integrity="sha512-gOQQLjHRpD3/SEOtalVq50iDn4opLVup2TF8c4QPI3/NmUPNZOk2FG0ihi8oCU/qYEsw4P6nuEZT2lAG0UNYaw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/cart.css" />
     <title>Document</title>
   </head>
   <body>
@@ -37,7 +38,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="index.html"
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="index.html"
                     >Home</a
                   >
                 </li>
@@ -52,44 +56,51 @@
                 </div>
               </div>
             </div>
-
-          
           </div>
         </nav>
       </div>
     </header>
     <main>
-        <section id="cart">
-            <h1 class="text-center mt-3 mb-3">Products</h1>
-         
-            <div class="container">
-                <div class="alert alert-warning" role="alert">
-                    Not yet produts
-                  </div>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Count</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                   
-                    </tbody>
-                  </table>
-                  <div class="total-price d-flex align-items-center mb-5">
-                    <h1>Total price :</h1>
-                    <span class="mx-2" style="font-size: 35px;">100</span>
-                  </div>
-            </div>
-        </section>
+      <section id="cart">
+        <h1 class="text-center mt-3 mb-3">Products</h1>
+
+        <div class="container">
+          <div class="alert alert-warning" role="alert">Not yet produts</div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Count</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="total-price d-flex align-items-center mb-5">
+            <h1>Total price :</h1>
+            <span class="mx-2" style="font-size: 35px">100</span>
+          </div>
+        </div>
+      </section>
     </main>
 
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.1/jquery-migrate.min.js"
+    integrity="sha512-KgffulL3mxrOsDicgQWA11O6q6oKeWcV00VxgfJw4TcM8XRQT8Df9EsrYxDf7tpVpfl3qcYD96BpyPvA4d1FDQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.31/dist/sweetalert2.all.min.js"></script>
     <script src="./assets/js/cart.js"></script>
-</body>
+  </body>
 </html>

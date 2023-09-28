@@ -1,4 +1,4 @@
-"use strict";
+
 
 // localStorage.setItem("name","Ismayil");
 // localStorage.setItem("surname","Efendizade");
@@ -97,69 +97,110 @@
 
 
 
-let addBtns = document.querySelectorAll("#products .card-body a");
+// const myCarouselElement = document.querySelector('#carouselExampleAutoplaying')
 
-let basket = [];
+// const carousel = new bootstrap.Carousel(myCarouselElement, {
+//   interval: 1000,
+// })
 
-if (localStorage.getItem("basket") != null) {
-    basket = JSON.parse(localStorage.getItem("basket"))
-} else {
-    document.querySelector(".basket .count").classList.add("d-none")
-}
 
-if(basket.length == 0){
-    document.querySelector(".basket .count").classList.add("d-none");
-}
 
-function basketCount() {
-    let basketCount = 0;
-    for (const item of basket) {
-        basketCount += item.count;
+
+
+
+
+
+
+
+$(document).ready(function () {
+    $('.your-class').slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: true,
+        variableWidth: true
+    });
+
+    new DataTable('table.display');
+
+
+
+
+
+
+    let addBtns = document.querySelectorAll("#products .card-body a");
+
+    let basket = [];
+
+    if (localStorage.getItem("basket") != null) {
+        basket = JSON.parse(localStorage.getItem("basket"))
+    } else {
+        document.querySelector(".basket .count").classList.add("d-none")
     }
-    return basketCount;
-}
 
-document.querySelector(".basket .count span").innerText = basketCount();
+    if (basket.length == 0) {
+        document.querySelector(".basket .count").classList.add("d-none");
+    }
 
-addBtns.forEach(btn => {
-    btn.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        let productName = this.parentNode.firstElementChild.innerText;
-        let productDescription = this.parentNode.firstElementChild.nextElementSibling.innerText;
-        let productImage = this.parentNode.previousElementSibling.getAttribute("src");
-        let productId = parseInt(this.parentNode.getAttribute("data-id"));
-        let productPrice = parseFloat(this.nextElementSibling.innerText.split(" ")[0]);
-      
-
-        let existProduct = basket.find(m => m.id == productId);
-
-        if (existProduct != undefined) {
-            existProduct.count++;
-        } else {
-
-            basket.push({
-                id: productId,
-                name: productName,
-                description: productDescription,
-                image: productImage,
-                price:productPrice,
-                count: 1
-            })
+    function basketCount() {
+        let basketCount = 0;
+        for (const item of basket) {
+            basketCount += item.count;
         }
+        return basketCount;
+    }
 
-        localStorage.setItem("basket", JSON.stringify(basket));
-    
-        document.querySelector(".basket .count span").innerText = basketCount();
-        document.querySelector(".basket .count").classList.remove("d-none");
-   
+    document.querySelector(".basket .count span").innerText = basketCount();
 
-    })
+    addBtns.forEach(btn => {
+        btn.addEventListener("click", function (e) {
+
+            e.preventDefault();
+
+            let productName = this.parentNode.firstElementChild.innerText;
+            let productDescription = this.parentNode.firstElementChild.nextElementSibling.innerText;
+            let productImage = this.parentNode.previousElementSibling.getAttribute("src");
+            let productId = parseInt(this.parentNode.getAttribute("data-id"));
+            let productPrice = parseFloat(this.nextElementSibling.innerText.split(" ")[0]);
+
+
+            let existProduct = basket.find(m => m.id == productId);
+
+            if (existProduct != undefined) {
+                existProduct.count++;
+            } else {
+
+                basket.push({
+                    id: productId,
+                    name: productName,
+                    description: productDescription,
+                    image: productImage,
+                    price: productPrice,
+                    count: 1
+                })
+            }
+
+            localStorage.setItem("basket", JSON.stringify(basket));
+
+            document.querySelector(".basket .count span").innerText = basketCount();
+            document.querySelector(".basket .count").classList.remove("d-none");
+
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Your product added to basket',
+                showConfirmButton: false,
+                timer: 1500
+              })
+
+              
+
+
+        })
+    });
+
 });
-
-
-
 
 
 

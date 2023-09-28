@@ -26,3 +26,7 @@
     width: 150px;
     height: 150px;
 }
+
+div.dataTables_wrapper {
+    margin-bottom: 3em;
+}
